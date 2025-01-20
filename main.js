@@ -150,6 +150,17 @@ class WalletManager {
     }
   }
 
+  async signMessage(message, privateKey) {
+    const wallet = new ethers.Wallet(privateKey);
+    try {
+        const signature = await wallet.signMessage(message);
+        return signature;
+    } catch (error) {
+        log.error("Error signing message:", error);
+        return null;
+    }
+  }
+
   async processWallet(wallet) {
     const nonceData = await this.getNonce(wallet.address, get);
     if (!nonceData || !nonceData.data || !nonceData.data.nonce) {
