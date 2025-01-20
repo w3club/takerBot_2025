@@ -162,7 +162,7 @@ class WalletManager {
   }
 
   async processWallet(wallet) {
-    const nonceData = await this.getNonce(wallet.address, get);
+    const nonceData = await this.getNonce(wallet.address);
     if (!nonceData || !nonceData.data || !nonceData.data.nonce) {
       log.error(`Failed to retrieve nonce for wallet: ${wallet.address}`);
     }
@@ -186,7 +186,7 @@ class WalletManager {
     }
 
     log.info(`Trying to check user info...`);
-    const userData = await this.getUser(loginResponse.token, get);
+    const userData = await this.getUser(loginResponse.token);
     if (userData && userData.data) {
       const { userId, twName, totalReward } = userData.data;
       log.info(`User Info:`, { userId, twName, totalReward });
@@ -201,7 +201,7 @@ class WalletManager {
     }
 
     log.info("Trying to check user miner status...");
-    const minerStatus = await this.getMinerStatus(loginResponse.token, get);
+    const minerStatus = await this.getMinerStatus(loginResponse.token);
     if (minerStatus && minerStatus.data) {
       const lastMiningTime = minerStatus.data?.lastMiningTime || 0;
       const nextMiningTime = lastMiningTime + 24 * 60 * 60;
