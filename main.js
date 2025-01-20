@@ -177,7 +177,6 @@ class WalletManager {
       wallet.address,
       nonce,
       signature,
-      post
     );
     if (!loginResponse || !loginResponse.token) {
       log.error(`Login failed for wallet: ${wallet.address}`);
