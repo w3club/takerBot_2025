@@ -70,7 +70,7 @@ class WalletManager {
     }
   }
 
-  async login(message, signature, retries = 3) {
+  async login(address, signature, retries = 3) {
     try {
       const res = await this.axiosService.post(`wallet/login`, {
         address,
