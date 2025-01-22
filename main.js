@@ -213,7 +213,7 @@ class WalletManager {
       );
       if (dateNow > nextDate) {
         log.info(`Trying to start Mining for wallet: ${wallet.address}`);
-        const mineResponse = await startMine(loginResponse.token, post);
+        const mineResponse = await this.startMine(loginResponse.token);
         log.info("Mine response:", mineResponse);
         if (mineResponse) {
           log.info(
